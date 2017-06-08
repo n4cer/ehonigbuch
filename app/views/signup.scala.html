@@ -1,0 +1,32 @@
+@(signup_form: Form[Application.Signup])
+    
+@import helper._
+
+@main("Registrierung eStockkarte") {
+    @helper.form(routes.Application.createUser) {
+    <h1>Registrieren</h1>
+    
+    @if(signup_form.hasGlobalErrors) {
+    <ul class="error">
+        @if(signup_form.globalErrors.size() > 0) {
+            @for(error <- signup_form.globalErrors) {
+                <li>@error.message().toString()</li>
+            }
+        }
+    </ul>
+    }
+    
+    <p>
+        @inputText(signup_form("username"), '_label -> "Benutzername", '_showConstraints -> false, 'placeholder -> "Benutzername")
+    </p>
+    <p>
+        @inputPassword(signup_form("password"), '_label -> "Passwort", '_showConstraints -> false, 'placeholder -> "Passwort")
+    </p>
+    <p>
+        @inputPassword(signup_form("confirmPassword"), '_label -> "Passwort wiederholen", '_showConstraints -> false, 'placeholder -> "Passwort wiederholen")
+    </p>
+    <p>
+        <button type="submit">Registrieren</button>
+    </p>
+    }
+}

@@ -1,0 +1,52 @@
+@(record: HarvestRecord)
+
+@main("Ernte " + record) {
+    <h1>Ernte @record</h1>
+    <p class="details">
+        <label>Los-Nr.: </label>@record<br />
+        <label>Datum: </label>@if(record.date != null) { @record.date.format("dd.MM.yyy") }<br />
+        <label>Beschreibung: </label>@record.description<br />
+        <label>Gewicht: </label>@record.weight<br />
+    </p>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Los-Nr.</th>
+                <th>Anzahl Gläser</th>
+                <th>Datum</th>
+                <th>Nummer von</th>
+                <th>Nummer bis</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @for(bRecord <- record.bottlingRecords) {
+            <tr>
+                <td>@bRecord</td>
+                <td>@bRecord.amount</td>
+                <td>@if(bRecord.date != null) { @bRecord.date.format("dd.MM.yyy") }</td>
+                <td>@bRecord.labelNumberFrom</td>
+                <td>@bRecord.labelNumberTo</td>
+                <td>
+                    <a href="routes.Application.recordDetail(record.id)">
+                        <i class="glyphicon glyphicon-zoom-in"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="routes.HiveRecords.edit(record.id)">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="routes.HiveRecords.delete(record.id)">
+                        <i class="del glyphicon glyphicon-trash"></i>
+                    </a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}

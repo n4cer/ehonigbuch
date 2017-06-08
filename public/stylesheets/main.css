@@ -1,0 +1,76 @@
+body, html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background-image: url(/assets/images/light-honeycomb.png)
+}
+
+.container {
+    min-height: 100%;
+}
+
+.footer {
+    background-color: #f5f5f5;
+    bottom: 0;
+    height: 60px;
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+.footer > .container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.text-muted {
+    color: #777;
+}
+
+#github_mark {
+    margin: 0 10px;
+}
+
+.error {
+    color: #cc000e;
+}
+
+.icon-success {
+    color: #5CB85C;
+}
+
+.icon-error {
+    color: #cc000e;
+}
+
+.details label {
+    width: 150px;
+    margin-right: 10px;
+}
+
+.play_logo img {
+    height: 24px;
+}
+
+/* forms */
+.form_row {
+    clear: both;
+    margin-bottom: 5px;
+    min-height: 27px;
+}
+
+.form_row .left {
+    float: left;
+    min-width: 300px;
+}
+
+.form_row .right {
+    float: left;
+    min-width: 300px;
+}

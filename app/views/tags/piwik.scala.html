@@ -1,0 +1,17 @@
+@if(play.Play.application().configuration().getString("piwik.enable") == "true") {
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//@play.Play.application().configuration().getString("piwik.url")";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '@play.Play.application().configuration().getString("piwik.id")']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//@play.Play.application().configuration().getString("piwik.url")piwik.php?idsite=@play.Play.application().configuration().getString("piwik.id")" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+}

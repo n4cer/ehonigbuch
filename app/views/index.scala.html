@@ -1,0 +1,22 @@
+@main("Startseite eHonigbuch") {
+    <h1>Übersicht</h1>
+    
+    @if(flash.contains("success")) {
+    <p class="successs">
+        @flash.get("success")
+    </p>
+    }
+    
+    @if(Util.getUser() != null) {
+      <p>
+        Hallo @Util.getUser().name
+      </p>
+    }
+    <p>
+      <b>Online Honigbuch im Aufbau</b><br>
+      bisher verfügbare Funktionen:
+    </p>
+    <ul>
+        <li>TODO</li>
+    </ul>
+}

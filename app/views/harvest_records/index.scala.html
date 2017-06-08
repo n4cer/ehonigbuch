@@ -1,0 +1,30 @@
+@(records: List[HarvestRecord])
+
+@main("Übersicht Ernten") {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Los-Nr.</th>
+                <th>Datum</th>
+                <th>Beschreibung</th>
+                <th>Gewicht</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(record <- records) {
+            <tr>
+                <td><a href="@routes.HarvestRecords.show(record.id)">@record</a></td>
+                <td>@if(record.date != null) { @record.date.format("dd.MM.yyy") }</td>
+                <td>@record.description</td>
+                <td>@record.weight</td>
+                <td>
+                    <a href="@routes.HarvestRecords.show(record.id)">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <a href="@routes.HarvestRecords.add">Neue Ernte anlegen</a>
+}
