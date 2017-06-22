@@ -20,6 +20,8 @@ GET     /harvestrecords             controllers.HarvestRecords.index()
 GET     /harvestrecords/detail/:id  controllers.HarvestRecords.show(id: Long)
 GET     /harvestrecords/add         controllers.HarvestRecords.add()
 POST    /harvestrecords/add         controllers.HarvestRecords.create()
+GET     /harvestrecords/edit/:id    controllers.HarvestRecords.edit(id: Long)
+POST    /harvestrecords/update/:id  controllers.HarvestRecords.update(id: Long)
 
 #Users
 GET     /users                     controllers.Users.index()

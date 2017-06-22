@@ -8,6 +8,8 @@
                 <th>Datum</th>
                 <th>Beschreibung</th>
                 <th>Gewicht</th>
+                <th>Wassergehalt %</th>
+                <th />
             </tr>
         </thead>
         <tbody>
@@ -17,9 +19,16 @@
                 <td>@if(record.date != null) { @record.date.format("dd.MM.yyy") }</td>
                 <td>@record.description</td>
                 <td>@record.weight</td>
+                <td>@record.waterContent</td>
                 <td>
                     <a href="@routes.HarvestRecords.show(record.id)">
+                        <i class="glyphicon glyphicon-zoom-in"></i>
+                    </a>
+                    <a href="@routes.HarvestRecords.edit(record.id)">
                         <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a href="routes.HarvestRecords.delete(record.id)">
+                        <i class="del glyphicon glyphicon-trash"></i>
                     </a>
                 </td>
             </tr>

@@ -48,43 +48,40 @@ public class HarvestRecords extends Controller {
       
     return redirect(routes.HarvestRecords.show(record.id));
   }
-  /*
+  
   public Result edit(Long id) {
-    HiveRecord record = HiveRecord.find.byId(id);
+    HarvestRecord record = HarvestRecord.find.byId(id);
     User user = Util.getUser();
-    Colony colony = record.colony;
     
     if (!user.equals(record.user)) {
       return badRequest("Zugriff nicht erlaubt!");
     }
     
-    return ok(edit.render(record, formFactory.form(HiveRecord.class).fill(record), colony));
+    return ok(edit.render(record, formFactory.form(HarvestRecord.class).fill(record)));
   }
   
   public Result update(Long id) {
-    HiveRecord old_record = HiveRecord.find.byId(id);
+    HarvestRecord old_record = HarvestRecord.find.byId(id);
     User user = Util.getUser();
-    Colony colony = old_record.colony;
     
     if (!user.equals(old_record.user)) {
         return badRequest("Zugriff nicht erlaubt!");
     }
     
-    Form<HiveRecord> form = formFactory.form(HiveRecord.class).bindFromRequest();
+    Form<HarvestRecord> form = formFactory.form(HarvestRecord.class).bindFromRequest();
 
     if (form.hasErrors()) {
-      return badRequest(edit.render(old_record, form, colony));
+      return badRequest(edit.render(old_record, form));
     } 
     
-    HiveRecord record = form.get();
+    HarvestRecord record = form.get();
     record.id = old_record.id;
-    record.colony = colony;
     record.user = Util.getUser();
     record.update();
       
-    return redirect(routes.HiveRecords.show(colony.id));
+    return redirect(routes.HarvestRecords.show(record.id));
   }
-  
+  /*
   public Result delete(Long id) {
     HiveRecord record = HiveRecord.find.byId(id);
     User user = Util.getUser();

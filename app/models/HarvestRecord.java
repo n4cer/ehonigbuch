@@ -24,6 +24,7 @@ public class HarvestRecord extends Model {
   
   public String description;
   public Float weight;
+  public Float waterContent;
   @ManyToOne
   public User user;
   @OneToMany(mappedBy="harvestRecord", cascade=CascadeType.ALL)
