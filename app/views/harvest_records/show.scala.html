@@ -33,17 +33,17 @@
                 <td>@bRecord.labelNumberFrom</td>
                 <td>@bRecord.labelNumberTo</td>
                 <td>
-                    <a href="routes.Application.recordDetail(record.id)">
+                    <a href="@routes.BottlingRecords.show(bRecord.id)">
                         <i class="glyphicon glyphicon-zoom-in"></i>
                     </a>
                 </td>
                 <td>
-                    <a href="routes.HiveRecords.edit(record.id)">
+                    <a href="@routes.BottlingRecords.edit(bRecord.id)">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
                 </td>
                 <td>
-                    <a href="routes.HiveRecords.delete(record.id)">
+                    <a href="@routes.BottlingRecords.delete(bRecord.id)">
                         <i class="del glyphicon glyphicon-trash"></i>
                     </a>
                 </td>
@@ -51,4 +51,6 @@
     }
         </tbody>
     </table>
+    
+    <a href="@routes.BottlingRecords.add(record.id)">Abfüllung anlegen</a>
 }

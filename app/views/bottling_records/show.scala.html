@@ -1,0 +1,13 @@
+@(record: BottlingRecord)
+
+@main("Ernte Abfüllung " + record) {
+    <h1>@{ "Abfüllung " + record.harvestRecord + "_" + record }</h1>
+    <p class="details">
+        <label>Los-Nr.: </label>@record<br />
+        <label>Anzahl Gläser: </label>@record.amount<br />
+        <label>Datum: </label>@if(record.date != null) { @record.date.format("dd.MM.yyy") }<br />
+        <label>Nummer von: </label>@record.labelNumberFrom<br />
+        <label>Gewicht: </label>@record.labelNumberTo<br />
+        <a href="@routes.BottlingRecords.edit(record.id)">Bearbeiten</a>
+    </p>
+}

@@ -1,0 +1,41 @@
+@(record: BottlingRecord, add_form: Form[BottlingRecord])
+    
+@import helper._
+
+@main("Eintrag bearbeiten") {
+    <h1>Eintrag bearbeiten</h1>
+    @helper.form(routes.BottlingRecords.update(record.id)) {
+    <div class="form_row">
+        <div class="left">
+            @inputText(add_form("number"), '_label -> "Nummer")
+        </div>
+        <div class="right">
+            @inputText(add_form("amount"), '_label -> "Anzahl Gläser")
+        </div>
+    </div>
+    <div class="form_row">
+        <div class="left">
+            @inputText(add_form("labelNumberFrom"), '_label -> "Nummer von")
+        </div>
+        <div class="right">
+            @inputText(add_form("labelNumberTo"), '_label -> "Nummer bis")
+        </div>
+    </div>
+    <div class="form_row">
+        <div class="left">
+            @inputText(add_form("date"), '_label -> "Datum", 'type -> "date", 'class -> "datepicker")
+        </div>
+    </div>
+    <div class="form_row">
+        <button type="submit">Speichern</button>
+    </div>
+    }
+    
+    <script>
+      $(function() {
+        var $date = $(".datepicker").val();
+        $(".datepicker").datepicker();
+        $(".datepicker").datepicker("option", "dateFormat", "yy-mm-dd").datepicker("setDate", $date);
+      });
+    </script>
+}

@@ -22,6 +22,15 @@ GET     /harvestrecords/add         controllers.HarvestRecords.add()
 POST    /harvestrecords/add         controllers.HarvestRecords.create()
 GET     /harvestrecords/edit/:id    controllers.HarvestRecords.edit(id: Long)
 POST    /harvestrecords/update/:id  controllers.HarvestRecords.update(id: Long)
+GET     /harvestrecords/delete/:id  controllers.HarvestRecords.delete(id: Long)
+
+#BottlingRecords
+GET     /bottlingrecords/detail/:id controllers.BottlingRecords.show(id: Long)
+GET     /bottlingrecords/add/:harvestId controllers.BottlingRecords.add(harvestId: Long)
+POST    /bottlingrecords/add/:harvestId controllers.BottlingRecords.create(harvestId: Long)
+GET     /bottlingrecords/edit/:id   controllers.BottlingRecords.edit(id: Long)
+POST    /bottlingrecords/update/:id controllers.BottlingRecords.update(id: Long)
+GET     /bottlingrecords/delete/:id controllers.BottlingRecords.delete(id: Long)
 
 #Users
 GET     /users                     controllers.Users.index()

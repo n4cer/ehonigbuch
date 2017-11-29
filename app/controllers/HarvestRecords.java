@@ -81,9 +81,9 @@ public class HarvestRecords extends Controller {
       
     return redirect(routes.HarvestRecords.show(record.id));
   }
-  /*
+  
   public Result delete(Long id) {
-    HiveRecord record = HiveRecord.find.byId(id);
+    HarvestRecord record = HarvestRecord.find.byId(id);
     User user = Util.getUser();
     
     if (!user.equals(record.user)) {
@@ -92,7 +92,6 @@ public class HarvestRecords extends Controller {
     
     record.delete();
     
-    return redirect(routes.HiveRecords.show(record.colony.id));
+    return redirect(routes.HarvestRecords.index());
   }
-  */
 }
