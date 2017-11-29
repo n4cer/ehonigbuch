@@ -20,7 +20,7 @@ public class HarvestRecords extends Controller {
   @Inject FormFactory formFactory;
   
   public Result index() {
-    List<HarvestRecord> records = HarvestRecord.find.where().eq("user", Util.getUser()).order().asc("id").findList();
+    List<HarvestRecord> records = HarvestRecord.find.query().where().eq("user", Util.getUser()).order().asc("id").findList();
     
     return ok(index.render(records));
   }

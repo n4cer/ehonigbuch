@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.avaje.ebean.Model;
+import io.ebean.*;
 
 import play.data.validation.Constraints;
 import play.data.validation.Constraints.MinLength;
@@ -52,7 +52,7 @@ public class User extends Model {
    * @return User
    */
   public static User authenticate(String userName, String password) {
-    User user = User.find.where().eq("name", userName).findUnique();
+    User user = User.find.query().where().eq("name", userName).findUnique();
     if (user != null && BCrypt.checkpw(password, user.passwordHash)) {
       return user;
     } else {

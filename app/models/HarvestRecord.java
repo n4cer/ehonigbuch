@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
-import com.avaje.ebean.Model;
+import io.ebean.*;
 
 @Entity
 public class HarvestRecord extends Model {

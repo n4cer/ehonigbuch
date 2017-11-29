@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.avaje.ebean.Model;
+import io.ebean.*;
 
 @Entity
 public class BottlingRecord extends Model {

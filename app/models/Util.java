@@ -13,7 +13,7 @@ public class Util {
   public static User getUser() {
     String user_name = Context.current().session().get("username");
     
-    return User.find.where().eq("name", user_name).findUnique();
+    return User.find.query().where().eq("name", user_name).findUnique();
   }
   
   public static Boolean isAuthenticated() {
