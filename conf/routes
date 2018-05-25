@@ -14,6 +14,7 @@ POST    /user_edit                  controllers.Application.userEdit()
 GET     /password                   controllers.Application.password()
 POST    /password_change            controllers.Application.changePassword()
 GET     /imprint                    controllers.Application.imprint()
+GET     /privacy                    controllers.Application.privacy()
 
 #HarvestRecords
 GET     /harvestrecords             controllers.HarvestRecords.index()
