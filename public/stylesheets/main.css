@@ -58,6 +58,10 @@ body {
     height: 24px;
 }
 
+#bumblebee_icon img {
+    height: 24px;
+}
+
 /* forms */
 .form_row {
     clear: both;
