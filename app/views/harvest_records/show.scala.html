@@ -7,7 +7,8 @@
         <label>Datum: </label>@if(record.date != null) { @record.date.format("dd.MM.yyy") }<br />
         <label>Beschreibung: </label>@record.description<br />
         <label>Gewicht: </label>@record.weight<br />
-        <label>Wassergehalt: </label>@record.waterContent %<br />
+        <label>Wasser-/Alkoholgehalt: </label>@record.waterContent %<br />
+        <label>Typ: </label>@record.harvestType.name<br />
         <a href="@routes.HarvestRecords.edit(record.id)">Bearbeiten</a>
     </p>
     

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import models.HarvestRecord;
+import models.HarvestType;
 import models.User;
 import models.Util;
 import play.data.Form;
@@ -32,14 +33,17 @@ public class HarvestRecords extends Controller {
   }
   
   public Result add() {
-    return ok(add.render(formFactory.form(HarvestRecord.class)));
+    List<HarvestType> harvestTypes = HarvestType.find.all();
+    
+    return ok(add.render(formFactory.form(HarvestRecord.class), harvestTypes));
   }
   
   public Result create() {
     Form<HarvestRecord> form = formFactory.form(HarvestRecord.class).bindFromRequest();
+    List<HarvestType> harvestTypes = HarvestType.find.all();
 
     if (form.hasErrors()) {
-      return badRequest(add.render(form));
+      return badRequest(add.render(form, harvestTypes));
     } 
     
     HarvestRecord record = form.get();
@@ -51,17 +55,19 @@ public class HarvestRecords extends Controller {
   
   public Result edit(Long id) {
     HarvestRecord record = HarvestRecord.find.byId(id);
+    List<HarvestType> harvestTypes = HarvestType.find.all();
     User user = Util.getUser();
     
     if (!user.equals(record.user)) {
       return badRequest("Zugriff nicht erlaubt!");
     }
     
-    return ok(edit.render(record, formFactory.form(HarvestRecord.class).fill(record)));
+    return ok(edit.render(record, formFactory.form(HarvestRecord.class).fill(record), harvestTypes));
   }
   
   public Result update(Long id) {
     HarvestRecord old_record = HarvestRecord.find.byId(id);
+    List<HarvestType> harvestTypes = HarvestType.find.all();
     User user = Util.getUser();
     
     if (!user.equals(old_record.user)) {
@@ -71,7 +77,7 @@ public class HarvestRecords extends Controller {
     Form<HarvestRecord> form = formFactory.form(HarvestRecord.class).bindFromRequest();
 
     if (form.hasErrors()) {
-      return badRequest(edit.render(old_record, form));
+      return badRequest(edit.render(old_record, form, harvestTypes));
     } 
     
     HarvestRecord record = form.get();

@@ -8,7 +8,8 @@
                 <th>Datum</th>
                 <th>Beschreibung</th>
                 <th>Gewicht</th>
-                <th>Wassergehalt %</th>
+                <th>Wassergehalt/Alkoholgehalt %</th>
+                <th>Typ</th>
                 <th />
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>@record.description</td>
                 <td>@record.weight</td>
                 <td>@record.waterContent</td>
+                <td>@record.harvestType</td>
                 <td>
                     <a href="@routes.HarvestRecords.show(record.id)">
                         <i class="glyphicon glyphicon-zoom-in"></i>

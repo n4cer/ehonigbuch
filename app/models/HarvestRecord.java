@@ -12,11 +12,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
 import io.ebean.*;
+import play.data.validation.Constraints;
 
 @Entity
 public class HarvestRecord extends Model {
 
-  public static Finder<Long, HarvestRecord> find = new Finder<Long, HarvestRecord>(HarvestRecord.class);
+  public static Finder<Long, HarvestRecord> find = new Finder<>(HarvestRecord.class);
   @Id
   public Long id;
   public Integer number;
@@ -30,6 +31,9 @@ public class HarvestRecord extends Model {
   @OneToMany(mappedBy="harvestRecord", cascade=CascadeType.ALL)
   @OrderBy("date asc, number asc")
   public List<BottlingRecord> bottlingRecords;
+  @ManyToOne
+  @Constraints.Required
+  public HarvestType harvestType;
   
   @Override
   public String toString() {
@@ -42,6 +46,6 @@ public class HarvestRecord extends Model {
       year = df.format(date);
     }
     
-    return "L_" + number + "_" + year;
+    return harvestType.typeId + "_" + number + "_" + year;
   }
 }

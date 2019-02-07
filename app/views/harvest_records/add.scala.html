@@ -1,4 +1,4 @@
-@(add_form: Form[HarvestRecord])
+@(add_form: Form[HarvestRecord], harvestTypes: List[HarvestType])
     
 @import helper._
 
@@ -24,6 +24,15 @@
     <div class="form_row">
         <div class="left">
             @inputText(add_form("waterContent"), '_label -> "Wassergehalt")
+        </div>
+    </div>
+    <div class="form_row">
+        <div class="left">
+            @select(
+                field = add_form("harvestType.id"),
+                options = harvestTypes.map(harvestType => harvestType.id.toString -> harvestType.name),
+                '_label -> "Typ"
+            )
         </div>
     </div>
     <div class="form_row">
