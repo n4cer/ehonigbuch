@@ -108,12 +108,21 @@ public class Application extends Controller {
     if(Util.isAuthenticated()) {
       return badRequest("Bereits angemeldet.");
     }
+
+    if(!configuration.underlying().getBoolean("signup.activated")) {
+      return badRequest("Die Registrierung ist momentan deaktiviert.");
+    }
+
     Form<Signup> signup_form = formFactory.form(Signup.class);
     
     return ok(signup.render(signup_form));
   }
   
   public Result createUser() {
+    if(!configuration.underlying().getBoolean("signup.activated")) {
+      return badRequest("Die Registrierung ist momentan deaktiviert.");
+    }
+
     Form<Signup> signup_form = formFactory.form(Signup.class).bindFromRequest();
 
     if (signup_form.hasErrors()) {
