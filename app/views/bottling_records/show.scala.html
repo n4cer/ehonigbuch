@@ -7,7 +7,7 @@
         <label>Anzahl Gläser: </label>@record.amount<br />
         <label>Datum: </label>@if(record.date != null) { @record.date.format("dd.MM.yyy") }<br />
         <label>Nummer von: </label>@record.labelNumberFrom<br />
-        <label>Gewicht: </label>@record.labelNumberTo<br />
+        <label>Nummer bis: </label>@record.labelNumberTo<br />
         <a href="@routes.BottlingRecords.edit(record.id)">Bearbeiten</a>
     </p>
 }
