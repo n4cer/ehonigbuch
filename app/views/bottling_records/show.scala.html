@@ -1,13 +1,13 @@
-@(record: BottlingRecord)
+@(record: BottlingRecord)(implicit request: play.mvc.Http.Request)
 
 @main("Ernte Abfüllung " + record) {
-    <h1>@{ "Abfüllung " + record.harvestRecord + "_" + record }</h1>
+    <h1>@{ "Abfüllung " + record.getHarvestRecord() + "_" + record }</h1>
     <p class="details">
         <label>Los-Nr.: </label>@record<br />
-        <label>Anzahl Gläser: </label>@record.amount<br />
-        <label>Datum: </label>@if(record.date != null) { @record.date.format("dd.MM.yyy") }<br />
-        <label>Nummer von: </label>@record.labelNumberFrom<br />
-        <label>Nummer bis: </label>@record.labelNumberTo<br />
-        <a href="@routes.BottlingRecords.edit(record.id)">Bearbeiten</a>
+        <label>Anzahl Gläser: </label>@record.getAmount()<br />
+        <label>Datum: </label>@if(record.getDate() != null) { @record.getDate().format("dd.MM.yyy") }<br />
+        <label>Nummer von: </label>@record.getLabelNumberFrom()<br />
+        <label>Nummer bis: </label>@record.getLabelNumberTo()<br />
+        <a href="@routes.BottlingRecords.edit(record.getId())">Bearbeiten</a>
     </p>
 }

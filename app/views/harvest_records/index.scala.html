@@ -1,4 +1,4 @@
-@(records: List[HarvestRecord])
+@(records: List[HarvestRecord])(implicit request: play.mvc.Http.Request)
 
 @main("Übersicht Ernten") {
     <table class="table">
@@ -16,20 +16,20 @@
         <tbody>
         @for(record <- records) {
             <tr>
-                <td><a href="@routes.HarvestRecords.show(record.id)">@record</a></td>
-                <td>@if(record.date != null) { @record.date.format("dd.MM.yyy") }</td>
-                <td>@record.description</td>
-                <td>@record.weight</td>
-                <td>@record.waterContent</td>
-                <td>@record.harvestType</td>
+                <td><a href="@routes.HarvestRecords.show(record.getId())">@record</a></td>
+                <td>@if(record.getDate() != null) { @record.getDate().format("dd.MM.yyy") }</td>
+                <td>@record.getDescription()</td>
+                <td>@record.getWeight()</td>
+                <td>@record.getWaterContent()</td>
+                <td>@record.getHarvestType()</td>
                 <td>
-                    <a href="@routes.HarvestRecords.show(record.id)">
+                    <a href="@routes.HarvestRecords.show(record.getId())">
                         <i class="glyphicon glyphicon-zoom-in"></i>
                     </a>
-                    <a href="@routes.HarvestRecords.edit(record.id)">
+                    <a href="@routes.HarvestRecords.edit(record.getId())">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
-                    <a href="@routes.HarvestRecords.delete(record.id)">
+                    <a href="@routes.HarvestRecords.delete(record.getId())">
                         <i class="del glyphicon glyphicon-trash"></i>
                     </a>
                 </td>

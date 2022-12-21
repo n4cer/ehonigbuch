@@ -2,22 +2,25 @@ package models;
 
 import java.security.SecureRandom;
 
-import play.Configuration;
 import play.api.Play;
-import play.mvc.Http.Context;
+import play.mvc.Http;
 
 public class Util {
   public static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
   public static SecureRandom rnd = new SecureRandom();
   
-  public static User getUser() {
-    String user_name = Context.current().session().get("username");
-    
-    return User.find.query().where().eq("name", user_name).findUnique();
+  public static User getUser(Http.Request request) {
+    if (request.session().get("username").isPresent()) {
+      String user_name = request.session().get("username").get();
+
+      return User.find.query().where().eq("name", user_name).findOne();
+    }
+
+    return null;
   }
   
-  public static Boolean isAuthenticated() {
-    if (Util.getUser() == null) {
+  public static Boolean isAuthenticated(Http.Request request) {
+    if (Util.getUser(request) == null) {
       return false;
     }
     
@@ -39,11 +42,5 @@ public class Util {
     }
     
     return "<span class=\"glyphicon glyphicon-remove icon-error\"></span>";
-  }
-  
-  public static String getConfigValueByKey(String key) {
-    Configuration config = Play.current().injector().instanceOf(Configuration.class);
-    
-    return config.getString(key);
   }
 }

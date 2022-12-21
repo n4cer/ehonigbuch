@@ -1,29 +1,29 @@
-@(record: BottlingRecord, add_form: Form[BottlingRecord])
+@(record: BottlingRecord, add_form: Form[BottlingRecord])(implicit request: play.mvc.Http.Request, messages: play.i18n.Messages)
     
 @import helper._
 
 @main("Eintrag bearbeiten") {
     <h1>Eintrag bearbeiten</h1>
-    @helper.form(routes.BottlingRecords.update(record.id)) {
+    @helper.form(routes.BottlingRecords.update(record.getId())) {
     <div class="form_row">
         <div class="left">
-            @inputText(add_form("number"), '_label -> "Nummer")
+            @inputText(add_form("number"), Symbol("_label") -> "Nummer")
         </div>
         <div class="right">
-            @inputText(add_form("amount"), '_label -> "Anzahl Gläser")
+            @inputText(add_form("amount"), Symbol("_label") -> "Anzahl Gläser")
         </div>
     </div>
     <div class="form_row">
         <div class="left">
-            @inputText(add_form("labelNumberFrom"), '_label -> "Nummer von")
+            @inputText(add_form("labelNumberFrom"), Symbol("_label") -> "Nummer von")
         </div>
         <div class="right">
-            @inputText(add_form("labelNumberTo"), '_label -> "Nummer bis")
+            @inputText(add_form("labelNumberTo"), Symbol("_label") -> "Nummer bis")
         </div>
     </div>
     <div class="form_row">
         <div class="left">
-            @inputText(add_form("date"), '_label -> "Datum", 'type -> "date", 'class -> "datepicker")
+            @inputText(add_form("date"), Symbol("_label") -> "Datum", Symbol("type") -> "date", Symbol("class") -> "datepicker")
         </div>
     </div>
     <div class="form_row">

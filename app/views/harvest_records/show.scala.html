@@ -1,15 +1,15 @@
-@(record: HarvestRecord)
+@(record: HarvestRecord)(implicit request: play.mvc.Http.Request)
 
 @main("Ernte " + record) {
     <h1>Ernte @record</h1>
     <p class="details">
         <label>Los-Nr.: </label>@record<br />
-        <label>Datum: </label>@if(record.date != null) { @record.date.format("dd.MM.yyy") }<br />
-        <label>Beschreibung: </label>@record.description<br />
-        <label>Gewicht: </label>@record.weight<br />
-        <label>Wasser-/Alkoholgehalt: </label>@record.waterContent %<br />
-        <label>Typ: </label>@record.harvestType.name<br />
-        <a href="@routes.HarvestRecords.edit(record.id)">Bearbeiten</a>
+        <label>Datum: </label>@if(record.getDate() != null) { @record.getDate().format("dd.MM.yyy") }<br />
+        <label>Beschreibung: </label>@record.getDescription()<br />
+        <label>Gewicht: </label>@record.getWeight()<br />
+        <label>Wasser-/Alkoholgehalt: </label>@record.getWaterContent() %<br />
+        <label>Typ: </label>@record.getHarvestType().getName()<br />
+        <a href="@routes.HarvestRecords.edit(record.getId())">Bearbeiten</a>
     </p>
     
     <table class="table">
@@ -26,25 +26,25 @@
             </tr>
         </thead>
         <tbody>
-    @for(bRecord <- record.bottlingRecords) {
+    @for(bRecord <- record.getBottlingRecords()) {
             <tr>
                 <td>@bRecord</td>
-                <td>@bRecord.amount</td>
-                <td>@if(bRecord.date != null) { @bRecord.date.format("dd.MM.yyy") }</td>
-                <td>@bRecord.labelNumberFrom</td>
-                <td>@bRecord.labelNumberTo</td>
+                <td>@bRecord.getAmount()</td>
+                <td>@if(bRecord.getDate() != null) { @bRecord.getDate().format("dd.MM.yyy") }</td>
+                <td>@bRecord.getLabelNumberFrom()</td>
+                <td>@bRecord.getLabelNumberTo()</td>
                 <td>
-                    <a href="@routes.BottlingRecords.show(bRecord.id)">
+                    <a href="@routes.BottlingRecords.show(bRecord.getId())">
                         <i class="glyphicon glyphicon-zoom-in"></i>
                     </a>
                 </td>
                 <td>
-                    <a href="@routes.BottlingRecords.edit(bRecord.id)">
+                    <a href="@routes.BottlingRecords.edit(bRecord.getId())">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
                 </td>
                 <td>
-                    <a href="@routes.BottlingRecords.delete(bRecord.id)">
+                    <a href="@routes.BottlingRecords.delete(bRecord.getId())">
                         <i class="del glyphicon glyphicon-trash"></i>
                     </a>
                 </td>
@@ -53,5 +53,5 @@
         </tbody>
     </table>
     
-    <a href="@routes.BottlingRecords.add(record.id)">Abfüllung anlegen</a>
+    <a href="@routes.BottlingRecords.add(record.getId())">Abfüllung anlegen</a>
 }

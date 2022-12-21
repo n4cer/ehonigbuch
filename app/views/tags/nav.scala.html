@@ -1,3 +1,5 @@
+@()(implicit request: play.mvc.Http.Request)
+
 <div class="navbar-header">
     <a class="navbar-brand" href="@routes.Application.index()">eHonigbuch</a>
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> 
@@ -8,19 +10,19 @@
      </button>
 </div>
 <div id="navbar" class="navbar-collapse collapse">
-    @if(session.get("username")) {
+    @if(request.session().get("username").isPresent) {
     <ul class="nav navbar-nav">
         <li><a href="@routes.HarvestRecords.index"><i class="glyphicon glyphicon-map-marker"></i> Ernten</a></li>
         <li><a href="@routes.Users.index"><i class="glyphicon glyphicon-user"></i> Benutzer</a></li>
     </ul>
     }
-    @if(session.get("username")) {
-        @helper.form(action = routes.Application.index(), 'class -> "navbar-form navbar-right") {
-            <a class="btn btn-primary" href="@routes.Application.user()">@session.get("username")</a>
+    @if(request.session().get("username").isPresent) {
+        @helper.form(action = routes.Application.index(), Symbol("class") -> "navbar-form navbar-right") {
+            <a class="btn btn-primary" href="@routes.Application.user()">@request.session().get("username")</a>
             <a class="btn btn-danger" href="@routes.Application.logout()">Abmelden</a>
         }
     } else {
-	    @helper.form(action = routes.Application.authenticate(), 'class -> "navbar-form navbar-right") {
+	    @helper.form(action = routes.Application.authenticate(), Symbol("class") -> "navbar-form navbar-right") {
 		    <div class="form-group">
 	            <input type="text" class="form-control" placeholder="Benutzer" name="username">
 	        </div>

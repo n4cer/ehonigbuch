@@ -1,18 +1,20 @@
 package controllers;
 
-import play.mvc.Http.Context;
+import play.mvc.Http;
 import play.mvc.Result;
 import play.mvc.Security;
+
+import java.util.Optional;
 
 public class Secured extends Security.Authenticator {
 
   @Override
-  public String getUsername(Context ctx) {
-    return ctx.session().get("username");
+  public Optional<String> getUsername(Http.Request request) {
+    return request.session().get("username");
   }
 
   @Override
-  public Result onUnauthorized(Context ctx) {
+  public Result onUnauthorized(Http.Request request) {
     return redirect(routes.Application.login());
   }
 }

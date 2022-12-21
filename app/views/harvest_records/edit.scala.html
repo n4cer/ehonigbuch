@@ -1,36 +1,36 @@
-@(record: HarvestRecord, add_form: Form[HarvestRecord], harvestTypes: List[HarvestType])
+@(record: HarvestRecord, add_form: Form[HarvestRecord], harvestTypes: Seq[HarvestType])(implicit request: play.mvc.Http.Request, messages: play.i18n.Messages)
     
 @import helper._
 
 @main("Eintrag bearbeiten") {
     <h1>Eintrag bearbeiten</h1>
-    @helper.form(routes.HarvestRecords.update(record.id)) {
+    @helper.form(routes.HarvestRecords.update(record.getId())) {
     <div class="form_row">
         <div class="left">
-            @inputText(add_form("number"), '_label -> "Nummer")
+            @inputText(add_form("number"), Symbol("_label") -> "Nummer")
         </div>
         <div class="right">
-            @inputText(add_form("date"), '_label -> "Datum", 'type -> "date", 'class -> "datepicker")
+            @inputText(add_form("date"), Symbol("_label") -> "Datum", Symbol("type") -> "date", Symbol("class") -> "datepicker")
         </div>
     </div>
     <div class="form_row">
         <div class="left">
-            @inputText(add_form("description"), '_label -> "Beschreibung")
+            @inputText(add_form("description"), Symbol("_label") -> "Beschreibung")
         </div>
         <div class="right">
-            @inputText(add_form("weight"), '_label -> "Gewicht")
+            @inputText(add_form("weight"), Symbol("_label") -> "Gewicht")
         </div>
     </div>
     <div class="form_row">
         <div class="left">
-            @inputText(add_form("waterContent"), '_label -> "Wassergehalt")
+            @inputText(add_form("waterContent"), Symbol("_label") -> "Wassergehalt")
         </div>
     </div>
     <div class="form_row">
         <div class="left">
             @select(
                 field = add_form("harvestType.id"),
-                options = harvestTypes.map(harvestType => harvestType.id.toString -> harvestType.name),
+                options = harvestTypes.map(harvestType => harvestType.getId().toString -> harvestType.getName()),
                 '_label -> "Typ"
             )
         </div>

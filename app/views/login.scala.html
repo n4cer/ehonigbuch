@@ -1,11 +1,9 @@
-@(login_form: Form[Application.Login])
+@(login_form: Form[Application.Login])(implicit request: play.mvc.Http.Request, messages: play.i18n.Messages)
     
-@import helper._
-
 @main("Login Honigbuch") {
-    @if(flash.contains("success")) {
+    @if(request.flash().get("success").isPresent) {
     <p class="success">
-        @flash.get("success")
+        @request.flash().get("success")
     </p>
     }
     

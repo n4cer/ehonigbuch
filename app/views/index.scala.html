@@ -1,15 +1,17 @@
+@()(implicit request: play.mvc.Http.Request, messages: play.i18n.Messages)
+
 @main("Startseite eHonigbuch") {
     <h1>Übersicht</h1>
     
-    @if(flash.contains("success")) {
+    @if(request.flash().get("success").isPresent) {
     <p class="successs">
-        @flash.get("success")
+        @request.flash().get("success")
     </p>
     }
     
-    @if(Util.getUser() != null) {
+    @if(Util.getUser(request) != null) {
       <p>
-        Hallo @Util.getUser().name
+        Hallo @Util.getUser(request).getName()
       </p>
     }
     <p>

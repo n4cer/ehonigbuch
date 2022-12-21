@@ -1,11 +1,11 @@
-@(user_form: Form[User])
+@(user_form: Form[User])(implicit request: play.mvc.Http.Request, messages: play.i18n.Messages)
     
 @import helper._
 
 @main("Benutzerprofil eHonigbuch") {
-    @if(flash.contains("success")) {
+    @if(request.flash().get("success").isPresent) {
     <p class="success">
-        @flash.get("success")
+        @request.flash().get("success")
     </p>
     }
     
@@ -15,31 +15,31 @@
     <a href="@routes.Application.password">Passwort ändern</a>
     
     <p>
-        @inputText(user_form("name"), '_label -> "Name*", '_showConstraints -> false)
+        @inputText(user_form("name"), Symbol("_label") -> "Name*", Symbol("_showConstraints") -> false)
     </p>
     <p>
-        @inputText(user_form("firstName"), '_label -> "Vorname")
+        @inputText(user_form("firstName"), Symbol("_label") -> "Vorname")
     </p>
     <p>
-        @inputText(user_form("lastName"), '_label -> "Nachname")
+        @inputText(user_form("lastName"), Symbol("_label") -> "Nachname")
     </p>
     <p>
-        @inputText(user_form("street"), '_label -> "Straße")
+        @inputText(user_form("street"), Symbol("_label") -> "Straße")
     </p>
     <p>
-        @inputText(user_form("zipCode"), '_label -> "Postleitzahl")
+        @inputText(user_form("zipCode"), Symbol("_label") -> "Postleitzahl")
     </p>
     <p>
-        @inputText(user_form("city"), '_label -> "Ort")
+        @inputText(user_form("city"), Symbol("_label") -> "Ort")
     </p>
     <p>
-        @inputText(user_form("email"), '_label -> "E-Mail", '_showConstraints -> false)
+        @inputText(user_form("email"), Symbol("_label") -> "E-Mail", Symbol("_showConstraints") -> false)
     </p>
     <p>
-        @inputText(user_form("telephone"), '_label -> "Telefon")
+        @inputText(user_form("telephone"), Symbol("_label") -> "Telefon")
     </p>
     <p>
-        @inputText(user_form("registrationNumber"), '_label -> "Registriernummer")
+        @inputText(user_form("registrationNumber"), Symbol("_label") -> "Registriernummer")
     </p>
     <p>
         <button type="submit">Speichern</button>

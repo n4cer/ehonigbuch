@@ -3,38 +3,38 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.Application.index()
-POST    /auth                       controllers.Application.authenticate()
-GET     /login                      controllers.Application.login()
+GET     /                           controllers.Application.index(request: Request)
+POST    /auth                       controllers.Application.authenticate(request: Request)
+GET     /login                      controllers.Application.login(request: Request)
 GET     /logout                     controllers.Application.logout()
-GET     /signup                     controllers.Application.signup()
-POST    /signup                     controllers.Application.createUser()
-GET     /user                       controllers.Application.user()
-POST    /user_edit                  controllers.Application.userEdit()
-GET     /password                   controllers.Application.password()
-POST    /password_change            controllers.Application.changePassword()
-GET     /imprint                    controllers.Application.imprint()
-GET     /privacy                    controllers.Application.privacy()
+GET     /signup                     controllers.Application.signup(request: Request)
+POST    /signup                     controllers.Application.createUser(request: Request)
+GET     /user                       controllers.Application.user(request: Request)
+POST    /user_edit                  controllers.Application.userEdit(request: Request)
+GET     /password                   controllers.Application.password(request: Request)
+POST    /password_change            controllers.Application.changePassword(request: Request)
+GET     /imprint                    controllers.Application.imprint(request: Request)
+GET     /privacy                    controllers.Application.privacy(request: Request)
 
 #HarvestRecords
-GET     /harvestrecords             controllers.HarvestRecords.index()
-GET     /harvestrecords/detail/:id  controllers.HarvestRecords.show(id: Long)
-GET     /harvestrecords/add         controllers.HarvestRecords.add()
-POST    /harvestrecords/add         controllers.HarvestRecords.create()
-GET     /harvestrecords/edit/:id    controllers.HarvestRecords.edit(id: Long)
-POST    /harvestrecords/update/:id  controllers.HarvestRecords.update(id: Long)
-GET     /harvestrecords/delete/:id  controllers.HarvestRecords.delete(id: Long)
+GET     /harvestrecords             controllers.HarvestRecords.index(request: Request)
+GET     /harvestrecords/detail/:id  controllers.HarvestRecords.show(id: Long, request: Request)
+GET     /harvestrecords/add         controllers.HarvestRecords.add(request: Request)
+POST    /harvestrecords/add         controllers.HarvestRecords.create(request: Request)
+GET     /harvestrecords/edit/:id    controllers.HarvestRecords.edit(id: Long, request: Request)
+POST    /harvestrecords/update/:id  controllers.HarvestRecords.update(id: Long, request: Request)
+GET     /harvestrecords/delete/:id  controllers.HarvestRecords.delete(id: Long, request: Request)
 
 #BottlingRecords
-GET     /bottlingrecords/detail/:id controllers.BottlingRecords.show(id: Long)
-GET     /bottlingrecords/add/:harvestId controllers.BottlingRecords.add(harvestId: Long)
-POST    /bottlingrecords/add/:harvestId controllers.BottlingRecords.create(harvestId: Long)
-GET     /bottlingrecords/edit/:id   controllers.BottlingRecords.edit(id: Long)
-POST    /bottlingrecords/update/:id controllers.BottlingRecords.update(id: Long)
-GET     /bottlingrecords/delete/:id controllers.BottlingRecords.delete(id: Long)
+GET     /bottlingrecords/detail/:id controllers.BottlingRecords.show(id: Long, request: Request)
+GET     /bottlingrecords/add/:harvestId controllers.BottlingRecords.add(harvestId: Long, request: Request)
+POST    /bottlingrecords/add/:harvestId controllers.BottlingRecords.create(harvestId: Long, request: Request)
+GET     /bottlingrecords/edit/:id   controllers.BottlingRecords.edit(id: Long, request: Request)
+POST    /bottlingrecords/update/:id controllers.BottlingRecords.update(id: Long, request: Request)
+GET     /bottlingrecords/delete/:id controllers.BottlingRecords.delete(id: Long, request: Request)
 
 #Users
-GET     /users                     controllers.Users.index()
+GET     /users                     controllers.Users.index(request: Request)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

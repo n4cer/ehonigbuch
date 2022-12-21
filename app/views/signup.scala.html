@@ -1,4 +1,4 @@
-@(signup_form: Form[Application.Signup])
+@(signup_form: Form[Application.Signup])(implicit request: play.mvc.Http.Request, messages: play.i18n.Messages)
     
 @import helper._
 
@@ -17,13 +17,13 @@
     }
     
     <p>
-        @inputText(signup_form("username"), '_label -> "Benutzername", '_showConstraints -> false, 'placeholder -> "Benutzername")
+        @inputText(signup_form("username"), Symbol("_label") -> "Benutzername", Symbol("_showConstraints") -> false, Symbol("placeholder") -> "Benutzername")
     </p>
     <p>
-        @inputPassword(signup_form("password"), '_label -> "Passwort", '_showConstraints -> false, 'placeholder -> "Passwort")
+        @inputPassword(signup_form("password"), Symbol("_label") -> "Passwort", Symbol("_showConstraints") -> false, Symbol("placeholder") -> "Passwort")
     </p>
     <p>
-        @inputPassword(signup_form("confirmPassword"), '_label -> "Passwort wiederholen", '_showConstraints -> false, 'placeholder -> "Passwort wiederholen")
+        @inputPassword(signup_form("confirmPassword"), Symbol("_label") -> "Passwort wiederholen", Symbol("_showConstraints") -> false, Symbol("placeholder") -> "Passwort wiederholen")
     </p>
     <p>
         <button type="submit">Registrieren</button>

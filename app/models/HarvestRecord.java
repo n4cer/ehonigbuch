@@ -16,25 +16,97 @@ import play.data.validation.Constraints;
 
 @Entity
 public class HarvestRecord extends Model {
-
-  public static Finder<Long, HarvestRecord> find = new Finder<>(HarvestRecord.class);
   @Id
-  public Long id;
-  public Integer number;
-  public Date date;
-  
-  public String description;
-  public Float weight;
-  public Float waterContent;
+  private Long id;
+  private Integer number;
+  private Date date;
+
+  private String description;
+  private Float weight;
+  private Float waterContent;
   @ManyToOne
-  public User user;
+  private User user;
   @OneToMany(mappedBy="harvestRecord", cascade=CascadeType.ALL)
   @OrderBy("date asc, number asc")
-  public List<BottlingRecord> bottlingRecords;
+  private List<BottlingRecord> bottlingRecords;
   @ManyToOne
   @Constraints.Required
-  public HarvestType harvestType;
-  
+  private HarvestType harvestType;
+
+  public static final Finder<Long, HarvestRecord> find = new Finder<>(HarvestRecord.class);
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Integer getNumber() {
+    return number;
+  }
+
+  public void setNumber(Integer number) {
+    this.number = number;
+  }
+
+  public Date getDate() {
+    return date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public Float getWeight() {
+    return weight;
+  }
+
+  public void setWeight(Float weight) {
+    this.weight = weight;
+  }
+
+  public Float getWaterContent() {
+    return waterContent;
+  }
+
+  public void setWaterContent(Float waterContent) {
+    this.waterContent = waterContent;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public List<BottlingRecord> getBottlingRecords() {
+    return bottlingRecords;
+  }
+
+  public void setBottlingRecords(List<BottlingRecord> bottlingRecords) {
+    this.bottlingRecords = bottlingRecords;
+  }
+
+  public HarvestType getHarvestType() {
+    return harvestType;
+  }
+
+  public void setHarvestType(HarvestType harvestType) {
+    this.harvestType = harvestType;
+  }
+
   @Override
   public String toString() {
     String year = "";
@@ -46,6 +118,6 @@ public class HarvestRecord extends Model {
       year = df.format(date);
     }
     
-    return harvestType.typeId + "_" + number + "_" + year;
+    return harvestType.getTypeId() + "_" + number + "_" + year;
   }
 }
